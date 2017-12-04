@@ -9,11 +9,11 @@
 </div>
 
 <div class="article-preview"
-  [hidden]="loading || results.length">
+  [hidden]="loading || results.length==0">
   No articles are here... yet.
 </div>
 
-<nav [hidden]="loading || totalPages = 1">
+<nav [hidden]="loading">
   <ul class="pagination">
 
     <li class="page-item"
