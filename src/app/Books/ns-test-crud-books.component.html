@@ -1,0 +1,95 @@
+<div class="Books-Crud">
+<div class="container">
+  <div class="col-md-12">
+    <h1>Books List</h1>
+    <table class="table table-bordered table-striped table-hover">
+    <thead>
+      <tr>
+        <th class="text-center">Price</th>
+        <th class="text-center">Name</th>
+        <th class="text-center">Author</th>
+        <th class="text-center">Review</th>
+        <th class="text-center">&nbsp;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let book of books">
+        <td>{{ book.Price }}</td>
+        <td>{{ book.name }}</td>
+        <td>{{ book.author }}</td>
+        <td>{{ book.review }}</td>
+        
+        <td>
+          <button class="btn btn-info"
+                        (click)="showEditBookForm(book)">
+                       <i class="fa fa-edit">Edit</i>
+              </button>
+          <button class="btn btn-danger"
+                       (click)="removeBook(book)">
+                       <i class="fa fa-minus">Delete</i>
+            </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <button class="btn btn-success"
+               (click)="showAddBookForm()"><i class="fa fa-plus">Add</i></button>
+  <br />
+  <br />
+
+  <form *ngIf="booksForm">
+    <h2>Add New Book</h2>
+    <p>Price: <input type="text"
+                           name="Price"
+                           [(ngModel)]="newBook.Price" /></p>
+    <p>Name: <input type="text" name="name"
+                                 [(ngModel)]="newBook.name" /></p>
+ 
+       <p>Author: <input type="text" name="author"
+                              [(ngModel)]="newBook.author" /></p>
+         <p>Review: <select name="review" [(ngModel)]="newBook.review">
+          <option value="Good">Good</option>
+          <option value="Bad">Bad</option>
+          <option value="Ok">Ok</option>
+          <option value="VeryGood">VeryGood</option>
+        </select></p>
+    <p>
+      <button type="button"
+                   class="btn btn-primary"
+                   (click)="saveBook(newBook)">Submit</button>
+      <button type="button"
+                   class="btn btn-warning"
+                   (click)="cancelNewBook()">Cancel</button>
+    </p>
+   </form>
+
+    <form *ngIf="editbooksForm">
+    <h2>Edit Book Details</h2>
+    <p>Price: <input type="text"
+                           name="Price"
+                           [(ngModel)]="editedbooks.Price" /></p>
+    <p>Name: <input type="text"
+                                 name="name"
+                                 [(ngModel)]="editedbooks.name" /></p>
+    <p>Author: <input type="text"
+                                 name="author"
+                                 [(ngModel)]="editedbooks.author" /></p>
+  <p>Review: <select name="review" [(ngModel)]="editedbooks.review">
+                                  <option value="Good">Good</option>
+                                  <option value="Bad">Bad</option>
+                                  <option value="Ok">Ok</option>
+                                  <option value="VeryGood">VeryGood</option>
+           </select></p>                            
+    <p>
+      <button type="button"
+                   class="btn btn-primary"
+                   (click)="updateBook(editedbooks)">Submit</button>
+      <button type="button"
+                   class="btn btn-warning"
+                   (click)="cancelEdits()">Cancel</button>
+    </p>
+
+   </form>
+  </div>
+</div>
